@@ -1,13 +1,64 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root{
+  --bg:#151515; --bg-soft:#212121; --card:#0f0f0f;
+  --text:#eaeaea; --muted:#99a3aa;
+  --primary:#2D8CFF; --primary-700:#1f6ed1;
+  --radius:14px;
 }
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,Segoe UI,Roboto,Ubuntu,Arial}
+a{color:var(--primary);text-decoration:none}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+/* Layout */
+.app{min-height:100%;display:flex;flex-direction:column}
+.container{flex:1;max-width:1200px;margin:0 auto;padding:24px}
+.page{padding:24px}
+.title{font-weight:800;text-align:center;margin:16px 0 24px}
+
+/* Navbar */
+.navbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:24px;background:#000;padding:12px 20px;border-bottom:1px solid #000}
+.brand img{height:56px;display:block}
+.menu{display:flex;gap:24px}
+.menu a{color:var(--text);font-weight:700}
+.menu a.active{color:var(--primary)}
+.actions{margin-left:auto;display:flex;gap:10px}
+
+/* Buttons */
+.btn{border:none;padding:12px 16px;border-radius:10px;font-weight:700;cursor:pointer}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-700)}
+
+/* Banner */
+.banner{border-radius:0;overflow:hidden;margin:0 auto 24px}
+.banner img{width:100%;height:320px;object-fit:cover;display:block}
+
+/* News card */
+.news-card{display:flex;gap:28px;background:var(--card);border:1px solid #2a2a2a;border-radius:16px;padding:24px;align-items:center}
+.news-thumb{width:240px;border-radius:12px;object-fit:cover}
+.news-body{flex:1}
+.news-date{color:var(--muted);margin:0 0 8px}
+.news-title{margin:6px 0 12px}
+
+/* Forms */
+.form{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+label{font-size:14px;color:#d0d6db}
+input,textarea,select{background:#0f0f0f;border:1px solid #2a2a2a;border-radius:10px;padding:12px 14px;color:var(--text);outline:none}
+input:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 2px #2d8cff40}
+
+/* Products */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.product-card{background:var(--card);border:1px solid #2a2a2a;border-radius:16px;overflow:hidden}
+.product-card img{width:100%;height:170px;object-fit:contain;background:#0a0a0a}
+.product-body{padding:14px}
+.product-name{font-weight:700;margin:4px 0}
+.product-price{color:#cfe1ff;margin:6px 0 12px}
+
+/* Admin */
+.admin{display:flex;gap:24px}
+.sidebar{width:220px;display:flex;flex-direction:column;gap:12px}
+.sidebtn{background:#113860;border:none;color:#b7d6ff;padding:12px;border-radius:10px;text-align:left;cursor:pointer}
+.sidebtn.active{background:var(--primary);color:#fff}
+.panel{flex:1;background:var(--card);border:1px solid #2a2a2a;border-radius:16px;padding:24px}
+
+/* Footer */
+footer{background:#000;color:#a9b2bd;text-align:center;padding:16px}
