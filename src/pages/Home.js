@@ -1,6 +1,6 @@
 import Banner from "../components/Banner";
 import NewsCard from "../components/NewsCard";
-import catan from "../img/imgsProductos/catan.png"; // thumb de la noticia
+import catan from "../img/imgsProductos/Catan.png"; // thumb de la noticia
 
 export default function Home() {
   return (

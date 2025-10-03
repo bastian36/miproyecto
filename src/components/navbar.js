@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from "../img/leveluplogo.png"; // ajusta el nombre si es distinto
+import logo from "../img/LevelUpLogo.png";
 
 export default function Navbar() {
   return (

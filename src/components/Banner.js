@@ -1,4 +1,4 @@
-import banner from "../img/imgbanner.png"; // ajusta al nombre real
+import banner from "../img/imgBanner.png";
 
 export default function Banner() {
   return (
