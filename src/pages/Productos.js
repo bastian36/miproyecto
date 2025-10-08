@@ -1,4 +1,4 @@
-// src/pages/Productos.js
+import { useState, useEffect } from "react";
 import ps5 from "../img/imgsProductos/PlayStation5.png";
 import headset from "../img/imgsProductos/Audifono Hyper X.png";
 import mouse from "../img/imgsProductos/Mouse Gamer.png";
@@ -10,17 +10,17 @@ import catan from "../img/imgsProductos/Catan.png";
 import carcassonne from "../img/imgsProductos/Carcassonne.png";
 import xbox from "../img/imgsProductos/Control Xbox.png";
 
-const products = [
-  { id: 1, name: "PlayStation 5", price: 699990, image: ps5, category: "Consolas" },
-  { id: 2, name: "Audífono HyperX", price: 69990, image: headset, category: "Audio" },
-  { id: 3, name: "Mouse Gamer RGB", price: 29990, image: mouse, category: "Periféricos" },
-  { id: 4, name: "Mouse Pad XL", price: 14990, image: mousepad, category: "Periféricos" },
-  { id: 5, name: "Silla Gamer", price: 129990, image: silla, category: "Mobiliario" },
-  { id: 6, name: "Rog Strix GPU", price: 549990, image: rog, category: "Componentes" },
-  { id: 7, name: "Polera LevelUp", price: 12990, image: camisa, category: "Merch" },
-  { id: 8, name: "Catan", price: 37990, image: catan, category: "Juegos de mesa" },
-  { id: 9, name: "Carcassonne", price: 34990, image: carcassonne, category: "Juegos de mesa" },
-  { id: 10, name: "Control Xbox", price: 59990, image: xbox, category: "Periféricos" },
+const initialProducts = [
+  { id: 1, name: "PlayStation 5", price: 699990, image: ps5, category: "Consolas", stock: 10 },
+  { id: 2, name: "Audífono HyperX", price: 69990, image: headset, category: "Audio", stock: 25 },
+  { id: 3, name: "Mouse Gamer RGB", price: 29990, image: mouse, category: "Periféricos", stock: 50 },
+  { id: 4, name: "Mouse Pad XL", price: 14990, image: mousepad, category: "Periféricos", stock: 100 },
+  { id: 5, name: "Silla Gamer", price: 129990, image: silla, category: "Mobiliario", stock: 15 },
+  { id: 6, name: "Rog Strix GPU", price: 549990, image: rog, category: "Componentes", stock: 8 },
+  { id: 7, name: "Polera LevelUp", price: 12990, image: camisa, category: "Merch", stock: 200 },
+  { id: 8, name: "Catan", price: 37990, image: catan, category: "Juegos de mesa", stock: 30 },
+  { id: 9, name: "Carcassonne", price: 34990, image: carcassonne, category: "Juegos de mesa", stock: 20 },
+  { id: 10, name: "Control Xbox", price: 59990, image: xbox, category: "Periféricos", stock: 40 },
 ];
 
 function formatCLP(n) {
@@ -28,6 +28,43 @@ function formatCLP(n) {
 }
 
 export default function Productos() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("products");
+    if (stored) {
+      setProducts(JSON.parse(stored));
+    } else {
+      localStorage.setItem("products", JSON.stringify(initialProducts));
+      setProducts(initialProducts);
+    }
+  }, []);
+
+  const addToCart = (product) => {
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    if (!user) {
+      alert("Debes iniciar sesión para comprar");
+      return;
+    }
+
+    if (product.stock <= 0) {
+      alert("Producto sin stock");
+      return;
+    }
+
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const existing = cart.find(item => item.id === product.id);
+    
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
+    
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Producto agregado al carrito");
+  };
+
   return (
     <section className="page">
       <h1 className="title">Productos</h1>
@@ -38,7 +75,14 @@ export default function Productos() {
             <div className="product-body">
               <div className="product-name">{p.name}</div>
               <div className="product-price">{formatCLP(p.price)}</div>
-              <button className="btn btn-primary">Agregar al carro</button>
+              <div style={{color: "var(--muted)", fontSize: "14px", margin: "4px 0"}}>Stock: {p.stock}</div>
+              <button 
+                className="btn btn-primary" 
+                onClick={() => addToCart(p)}
+                disabled={p.stock <= 0}
+              >
+                {p.stock > 0 ? "Agregar al carro" : "Sin stock"}
+              </button>
             </div>
           </div>
         ))}

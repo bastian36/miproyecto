@@ -11,7 +11,7 @@ export default function Contact() {
       <form className="form" onSubmit={onSubmit}>
         <input placeholder="Nombre completo" name="name" value={f.name} onChange={onChange} />
         <input placeholder="Correo electrónico" name="email" type="email" value={f.email} onChange={onChange} />
-        <textarea placeholder="Escribe tu mensaje..." name="msg" rows="6" value={f.msg} onChange={onChange} />
+        <textarea placeholder="Escribe tu mensaje..." name="msg" rows="10" value={f.msg} onChange={onChange} />
         <button className="btn btn-primary">Enviar Mensaje</button>
       </form>
     </section>

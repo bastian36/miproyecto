@@ -7,6 +7,10 @@ import Register from "./pages/Register";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
 import Productos from "./pages/Productos";
+import About from "./pages/About";
+import Blog from "./pages/Blog";
+import Cart from "./pages/Cart";
+import Boleta from "./pages/Boleta";
 import "./index.css";
 
 export default function App() {
@@ -22,8 +26,10 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/products" element={<Productos />} />
-            <Route path="/about" element={<div className="page"><h1 className="title">Nosotros</h1></div>} />
-            <Route path="/blog" element={<div className="page"><h1 className="title">Blog</h1></div>} />
+            <Route path="/about" element={<About />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/boleta" element={<Boleta />} />
           </Routes>
         </main>
         <Footer />
