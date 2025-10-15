@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { screen } from "@testing-library/react";
 import Navbar from "./Navbar";
 import { renderWithRouter } from "../test-utils/router";

@@ -39,12 +39,12 @@ module.exports = function(config) {
         extensions: ['.js', '.jsx']
       }
     },
-    reporters: ['spec'],
+    reporters: ['progress'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
     singleRun: true,
     concurrency: Infinity,
     client: {

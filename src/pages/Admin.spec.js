@@ -3,12 +3,16 @@ import { renderWithRouter } from "../test-utils/router";
 import Admin from "./Admin";
 
 describe("Admin Component", () => {
-  it("debe requerir permisos de admin o vendedor", () => {
-    const { container } = renderWithRouter(<Admin />);
-    expect(container).toBeTruthy(); // ajusta si quieres un texto específico
+  beforeEach(() => {
+    window.alert = jest.fn();
   });
 
-  it("debe mostrar tabs de administración para admin", () => {
+  it("debe requerir permisos de admin o vendedor", () => {
+    const { container } = renderWithRouter(<Admin />);
+    expect(container).toBeTruthy(); // ajusta si quieres un texto especï¿½fico
+  });
+
+  it("debe mostrar tabs de administraciï¿½n para admin", () => {
     const { container } = renderWithRouter(<Admin />);
     expect(container).toBeTruthy();
   });

@@ -1,7 +1,8 @@
-import React from "react";
-import { MemoryRouter } from "react-router-dom";
-import { render } from "@testing-library/react";
+import React from 'react';
+import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 
-export function renderWithRouter(ui, { route = "/", historyEntries = [route] } = {}) {
-  return render(<MemoryRouter initialEntries={historyEntries}>{ui}</MemoryRouter>);
+export function renderWithRouter(ui, { route = '/' } = {}) {
+  window.history.pushState({}, 'Test page', route);
+  return render(<MemoryRouter initialEntries={[route]}>{ui}</MemoryRouter>);
 }

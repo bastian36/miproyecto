@@ -13,6 +13,12 @@ export default function Admin() {
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
 
+  const loadData = () => {
+    setUsers(JSON.parse(localStorage.getItem("users") || "[]"));
+    setProducts(JSON.parse(localStorage.getItem("products") || "[]"));
+    setPurchases(JSON.parse(localStorage.getItem("purchaseHistory") || "[]"));
+  };
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("currentUser"));
     if (!user || (user.role !== "admin" && user.role !== "vendedor")) {
@@ -24,11 +30,7 @@ export default function Admin() {
     loadData();
   }, [navigate]);
 
-  const loadData = () => {
-    setUsers(JSON.parse(localStorage.getItem("users") || "[]"));
-    setProducts(JSON.parse(localStorage.getItem("products") || "[]"));
-    setPurchases(JSON.parse(localStorage.getItem("purchaseHistory") || "[]"));
-  };
+  if (!currentUser) return null;
 
   const deleteUser = (email) => {
     if (!window.confirm("¿Eliminar este usuario?")) return;

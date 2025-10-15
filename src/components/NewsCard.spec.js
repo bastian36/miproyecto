@@ -1,19 +1,19 @@
-﻿import React from "react";
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import NewsCard from "./NewsCard";
 
 describe("NewsCard Component", () => {
-  const onClick = jasmine.createSpy("onClick");
+  const onClick = jest.fn();
 
   const props = {
-    thumb: "test.png", // que renderice <img>
+    thumb: "test.png",
     date: "15 de julio, 2024",
     title: "Test Title",
     text: "Test Description",
     onClick,
   };
 
-  beforeEach(() => onClick.calls.reset());
+  beforeEach(() => onClick.mockClear());
 
   it("debe renderizar el título correctamente", () => {
     render(<NewsCard {...props} />);
@@ -27,7 +27,7 @@ describe("NewsCard Component", () => {
 
   it("debe llamar onClick cuando se hace clic", () => {
     render(<NewsCard {...props} />);
-    fireEvent.click(screen.getByRole("button", { name: /leer/i })); // evitar acento estricto
+    fireEvent.click(screen.getByRole("button", { name: /leer/i }));
     expect(onClick).toHaveBeenCalled();
   });
 
