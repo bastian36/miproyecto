@@ -45,6 +45,11 @@ export default function Cart() {
       return;
     }
 
+    if (user.role === "vendedor" || user.role === "admin") {
+      alert("Los vendedores y administradores no pueden realizar compras");
+      return;
+    }
+
     if (cart.length === 0) {
       alert("El carrito está vacío");
       return;
