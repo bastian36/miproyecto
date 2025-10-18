@@ -42,14 +42,7 @@ fun ProductsScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1E1E2E),
-                        Color(0xFF2A2A3E)
-                    )
-                )
-            )
+            .background(Color.White)
     ) {
         Column(
             modifier = Modifier
@@ -73,7 +66,7 @@ fun ProductsScreen() {
                     text = "Mis Productos",
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White
+                    color = Color.Black
                 )
             }
 
@@ -97,7 +90,7 @@ fun ProductCard(product: Product) {
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xFF3D4465)
+            containerColor = Color.White
         )
     ) {
         Row(
@@ -141,18 +134,18 @@ fun ProductCard(product: Product) {
                     text = product.name,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White
+                    color = Color.Black
                 )
                 Text(
                     text = product.description,
                     fontSize = 12.sp,
-                    color = Color.White.copy(alpha = 0.7f),
+                    color = Color.Black.copy(alpha = 0.7f),
                     modifier = Modifier.padding(vertical = 4.dp)
                 )
                 Text(
                     text = product.category,
                     fontSize = 10.sp,
-                    color = Color(0xFF00FF88)
+                    color = Color(0xFF00AA66)
                 )
             }
 

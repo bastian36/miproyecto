@@ -35,14 +35,7 @@ fun BlogScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1E1E2E),
-                        Color(0xFF2A2A3E)
-                    )
-                )
-            )
+            .background(Color.White)
     ) {
         Column(
             modifier = Modifier
@@ -64,7 +57,7 @@ fun BlogScreen() {
                     text = "Gaming News",
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White
+                    color = Color.Black
                 )
             }
 
@@ -86,7 +79,7 @@ fun NewsCard(news: News) {
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xFF3D4465)
+            containerColor = Color.White
         )
     ) {
         Column(
@@ -115,7 +108,7 @@ fun NewsCard(news: News) {
             Text(
                 text = news.date,
                 fontSize = 12.sp,
-                color = Color(0xFF00FF88)
+                color = Color(0xFF00AA66)
             )
             
             Spacer(modifier = Modifier.height(8.dp))
@@ -124,7 +117,7 @@ fun NewsCard(news: News) {
                 text = news.title,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = Color.Black
             )
             
             Spacer(modifier = Modifier.height(8.dp))
@@ -132,7 +125,7 @@ fun NewsCard(news: News) {
             Text(
                 text = news.text,
                 fontSize = 14.sp,
-                color = Color.White.copy(alpha = 0.8f)
+                color = Color.Black.copy(alpha = 0.7f)
             )
         }
     }

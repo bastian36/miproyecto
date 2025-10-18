@@ -24,14 +24,7 @@ fun SettingsScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1E1E2E),
-                        Color(0xFF2A2A3E)
-                    )
-                )
-            )
+            .background(Color.White)
     ) {
         Column(
             modifier = Modifier
@@ -42,7 +35,7 @@ fun SettingsScreen() {
                 text = "⚙️ Configuración",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White,
+                color = Color.Black,
                 modifier = Modifier.padding(bottom = 24.dp)
             )
             
@@ -50,7 +43,7 @@ fun SettingsScreen() {
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = Color(0xFF3D4465)
+                    containerColor = Color.White
                 )
             ) {
                 Column(
@@ -68,8 +61,8 @@ fun SettingsScreen() {
                         )
                         Spacer(Modifier.width(16.dp))
                         Column(modifier = Modifier.weight(1f)) {
-                            Text("Notificaciones", color = Color.White, fontSize = 16.sp)
-                            Text("Recibir alertas", color = Color.White.copy(0.7f), fontSize = 14.sp)
+                            Text("Notificaciones", color = Color.Black, fontSize = 16.sp)
+                            Text("Recibir alertas", color = Color.Black.copy(0.7f), fontSize = 14.sp)
                         }
                         Switch(
                             checked = notificationsEnabled,
@@ -77,7 +70,7 @@ fun SettingsScreen() {
                         )
                     }
                     
-                    HorizontalDivider(color = Color.White.copy(0.1f))
+                    HorizontalDivider(color = Color.Black.copy(0.1f))
                     
                     Row(
                         modifier = Modifier.fillMaxWidth().padding(vertical = 12.dp),
@@ -91,8 +84,8 @@ fun SettingsScreen() {
                         )
                         Spacer(Modifier.width(16.dp))
                         Column(modifier = Modifier.weight(1f)) {
-                            Text("Modo Oscuro", color = Color.White, fontSize = 16.sp)
-                            Text("Tema gaming", color = Color.White.copy(0.7f), fontSize = 14.sp)
+                            Text("Modo Oscuro", color = Color.Black, fontSize = 16.sp)
+                            Text("Tema gaming", color = Color.Black.copy(0.7f), fontSize = 14.sp)
                         }
                         Switch(
                             checked = darkModeEnabled,

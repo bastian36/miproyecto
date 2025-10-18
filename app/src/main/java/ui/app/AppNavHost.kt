@@ -14,6 +14,7 @@ import ui.profile.ProfileScreen
 import ui.products.ProductsScreen
 import ui.blog.BlogScreen
 import ui.settings.SettingsScreen
+import ui.reminders.RemindersScreen
 
 @Composable
 fun AppNavHost(
@@ -73,6 +74,9 @@ fun AppNavHost(
                 },
                 onNavigateToSettings = {
                     navController.navigate(Route.SETTINGS)
+                },
+                onNavigateToReminders = {
+                    navController.navigate(Route.REMINDERS)
                 }
             )
         }
@@ -100,6 +104,10 @@ fun AppNavHost(
         
         composable(Route.SETTINGS) {
             SettingsScreen()
+        }
+        
+        composable(Route.REMINDERS) {
+            RemindersScreen()
         }
     }
 }

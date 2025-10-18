@@ -30,20 +30,14 @@ fun PrincipalScreen(
     onNavigateToProducts: () -> Unit = {},
     onNavigateToBlog: () -> Unit = {},
     onNavigateToProfile: () -> Unit = {},
-    onNavigateToSettings: () -> Unit = {}
+    onNavigateToSettings: () -> Unit = {},
+    onNavigateToReminders: () -> Unit = {}
 ) {
     var showMenu by remember { mutableStateOf(false) }
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF667eea),
-                        Color(0xFF764ba2)
-                    )
-                )
-            )
+            .background(Color.White)
     ) {
         Column(
             modifier = Modifier.fillMaxSize()
@@ -60,7 +54,7 @@ fun PrincipalScreen(
                         Icon(
                             Icons.Default.MoreVert,
                             contentDescription = "Menú",
-                            tint = Color.White
+                            tint = Color.Black
                         )
                     }
                     DropdownMenu(
@@ -131,7 +125,7 @@ fun PrincipalScreen(
                     Text(
                         text = "¡Bienvenido!",
                         style = MaterialTheme.typography.headlineLarge,
-                        color = Color.White,
+                        color = Color.Black,
                         fontWeight = FontWeight.Bold
                     )
                     
@@ -140,13 +134,13 @@ fun PrincipalScreen(
                     Text(
                         text = userName,
                         style = MaterialTheme.typography.headlineMedium,
-                        color = Color.White.copy(alpha = 0.9f)
+                        color = Color.Black.copy(alpha = 0.8f)
                     )
                     
                     Text(
                         text = userEmail,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color.White.copy(alpha = 0.7f)
+                        color = Color.Black.copy(alpha = 0.6f)
                     )
                 }
             }
@@ -168,6 +162,15 @@ fun PrincipalScreen(
                 icon = Icons.Default.Article,
                 gradient = listOf(Color(0xFFFF6B9D), Color(0xFFE91E63)),
                 onClick = onNavigateToBlog
+            )
+            
+            Spacer(modifier = Modifier.height(16.dp))
+            
+            GameButton(
+                text = "Agenda",
+                icon = Icons.Default.Article,
+                gradient = listOf(Color(0xFF6C63FF), Color(0xFF5A52D5)),
+                onClick = onNavigateToReminders
             )
             
                 Spacer(modifier = Modifier.weight(1f))

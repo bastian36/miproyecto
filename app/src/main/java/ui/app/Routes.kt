@@ -10,4 +10,5 @@ object Route {
     const val PRODUCTS = "products"
     const val BLOG = "blog"
     const val SETTINGS = "settings"
+    const val REMINDERS = "reminders"
 }

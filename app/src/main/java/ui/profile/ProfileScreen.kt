@@ -59,17 +59,21 @@ fun ProfileScreen(
     val permissionsState = rememberMultiplePermissionsState(
         permissions = listOf(
             Manifest.permission.CAMERA,
+            Manifest.permission.READ_MEDIA_IMAGES,
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
         )
     )
+    
+    // URI para la foto
+    var photoUri by remember { mutableStateOf<Uri?>(null) }
     
     // Launcher para cámara
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicture()
     ) { success ->
         if (success) {
-            // La imagen se guardó exitosamente
+            profileImageUri = photoUri
         }
     }
     
@@ -83,14 +87,7 @@ fun ProfileScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1E1E2E),
-                        Color(0xFF2A2A3E)
-                    )
-                )
-            )
+            .background(Color.White)
     ) {
         Column(
             modifier = Modifier
@@ -103,7 +100,7 @@ fun ProfileScreen(
                 text = "👤 Mi Perfil",
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = Color.Black
             )
         
         // Foto de perfil
@@ -139,14 +136,8 @@ fun ProfileScreen(
                 Button(
                     onClick = {
                         if (permissionsState.allPermissionsGranted) {
-                            // Crear URI temporal para la foto
-                            val imageUri = androidx.core.content.FileProvider.getUriForFile(
-                                context,
-                                "${context.packageName}.fileprovider",
-                                java.io.File(context.filesDir, "temp_photo.jpg")
-                            )
-                            profileImageUri = imageUri
-                            cameraLauncher.launch(imageUri)
+                            photoUri = utils.CameraUtils.createImageUri(context)
+                            photoUri?.let { cameraLauncher.launch(it) }
                         } else {
                             permissionsState.launchMultiplePermissionRequest()
                         }
@@ -182,7 +173,7 @@ fun ProfileScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = Color(0xFF3D4465)
+                    containerColor = Color.White
                 )
             ) {
                 Column(
@@ -193,7 +184,7 @@ fun ProfileScreen(
                         text = "Información Personal",
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = Color.Black
                     )
                     
                     Row(
@@ -201,7 +192,7 @@ fun ProfileScreen(
                     ) {
                         Text(
                             text = "Nombre: ",
-                            color = Color.White.copy(alpha = 0.7f),
+                            color = Color.Black.copy(alpha = 0.7f),
                             fontSize = 16.sp
                         )
                         Text(
@@ -217,7 +208,7 @@ fun ProfileScreen(
                     ) {
                         Text(
                             text = "Email: ",
-                            color = Color.White.copy(alpha = 0.7f),
+                            color = Color.Black.copy(alpha = 0.7f),
                             fontSize = 16.sp
                         )
                         Text(
@@ -234,12 +225,12 @@ fun ProfileScreen(
                         ) {
                             Text(
                                 text = "Ubicación: ",
-                                color = Color.White.copy(alpha = 0.7f),
+                                color = Color.Black.copy(alpha = 0.7f),
                                 fontSize = 16.sp
                             )
                             Text(
                                 text = currentLocation!!,
-                                color = Color.White,
+                                color = Color.Black,
                                 fontSize = 14.sp
                             )
                         }
