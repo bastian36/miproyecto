@@ -40,7 +40,12 @@ export default function Admin() {
   };
 
   const updateStock = (id, newStock) => {
-    const updated = products.map(p => p.id === id ? {...p, stock: parseInt(newStock)} : p);
+    const stockValue = parseInt(newStock);
+    if (stockValue < 0) {
+      alert("El stock no puede ser negativo");
+      return;
+    }
+    const updated = products.map(p => p.id === id ? {...p, stock: stockValue} : p);
     localStorage.setItem("products", JSON.stringify(updated));
     setProducts(updated);
   };
