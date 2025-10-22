@@ -4,7 +4,7 @@ import Admin from "./Admin";
 
 describe("Admin Component", () => {
   beforeEach(() => {
-    window.alert = jest.fn();
+    window.alert = jasmine.createSpy('alert');
   });
 
   it("debe requerir permisos de admin o vendedor", () => {

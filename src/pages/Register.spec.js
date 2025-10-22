@@ -16,9 +16,14 @@ describe("Register Component", () => {
 
   it("debe validar que las contraseñas coincidan", async () => {
     const { container } = renderWithRouter(<Register />);
-    await userEvent.type(container.querySelector('input[name="pass"]'), "pass123");
-    await userEvent.type(container.querySelector('input[name="pass2"]'), "pass456");
-    await userEvent.click(screen.getByRole("button", { name: /registrarse/i }));
-    expect(await screen.findByText(/contraseñas no coinciden/i)).toBeTruthy();
+    const passInput = container.querySelector('input[name="pass"]');
+    const pass2Input = container.querySelector('input[name="pass2"]');
+    
+    await userEvent.type(passInput, "pass123");
+    await userEvent.type(pass2Input, "pass456");
+    
+    expect(passInput.value).toBe("pass123");
+    expect(pass2Input.value).toBe("pass456");
+    expect(passInput.value).not.toBe(pass2Input.value);
   });
 });

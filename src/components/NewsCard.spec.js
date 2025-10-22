@@ -3,17 +3,19 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import NewsCard from "./NewsCard";
 
 describe("NewsCard Component", () => {
-  const onClick = jest.fn();
+  let onClick;
 
   const props = {
     thumb: "test.png",
     date: "15 de julio, 2024",
     title: "Test Title",
     text: "Test Description",
-    onClick,
+    get onClick() { return onClick; },
   };
 
-  beforeEach(() => onClick.mockClear());
+  beforeEach(() => {
+    onClick = jasmine.createSpy('onClick');
+  });
 
   it("debe renderizar el título correctamente", () => {
     render(<NewsCard {...props} />);
