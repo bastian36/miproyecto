@@ -183,6 +183,5 @@ export default function Admin() {
         )}
       </div>
     </section>
-    //Comentario de Maximiliano
   );
 }

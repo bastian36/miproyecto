@@ -9,7 +9,7 @@ describe("Admin Component", () => {
 
   it("debe requerir permisos de admin o vendedor", () => {
     const { container } = renderWithRouter(<Admin />);
-    expect(container).toBeTruthy(); // ajusta si quieres un texto espec�fico
+    expect(container).toBeTruthy(); 
   });
 
   it("debe mostrar tabs de administraci�n para admin", () => {
