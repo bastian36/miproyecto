@@ -13,7 +13,6 @@ describe("Footer Component", () => {
 
   it("debe mostrar el copyright", () => {
     renderWithRouter(<Footer />);
-    // Ignoramos el símbolo © para evitar problemas de codificación
     expect(screen.getByText(/\b\d{4}\b.*levelup/i)).toBeTruthy();
   });
 });
