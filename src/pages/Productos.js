@@ -68,24 +68,28 @@ export default function Productos() {
   return (
     <section className="page">
       <h1 className="title">Productos</h1>
-      <div className="products-grid">
-        {products.map((p) => (
-          <div key={p.id} className="product-card">
-            <img src={p.image} alt={p.name} />
-            <div className="product-body">
-              <div className="product-name">{p.name}</div>
-              <div className="product-price">{formatCLP(p.price)}</div>
-              <div style={{color: "var(--muted)", fontSize: "14px", margin: "4px 0"}}>Stock: {p.stock}</div>
-              <button 
-                className="btn btn-primary" 
-                onClick={() => addToCart(p)}
-                disabled={p.stock <= 0}
-              >
-                {p.stock > 0 ? "Agregar al carro" : "Sin stock"}
-              </button>
+      <div className="container-fluid">
+        <div className="row g-4">
+          {products.map((p) => (
+            <div key={p.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+              <div className="product-card h-100">
+                <img src={p.image} alt={p.name} />
+                <div className="product-body">
+                  <div className="product-name">{p.name}</div>
+                  <div className="product-price">{formatCLP(p.price)}</div>
+                  <div style={{color: "var(--muted)", fontSize: "14px", margin: "4px 0"}}>Stock: {p.stock}</div>
+                  <button 
+                    className="btn btn-primary w-100" 
+                    onClick={() => addToCart(p)}
+                    disabled={p.stock <= 0}
+                  >
+                    {p.stock > 0 ? "Agregar al carro" : "Sin stock"}
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

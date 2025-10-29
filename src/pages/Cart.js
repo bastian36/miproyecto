@@ -92,35 +92,43 @@ export default function Cart() {
 
   return (
     <section className="page">
-      <h1 className="title">Carrito de Compras</h1>
-      {cart.length === 0 ? (
-        <p style={{textAlign: "center", color: "var(--muted)"}}>El carrito está vacío</p>
-      ) : (
-        <>
-          <div className="cart-items">
-            {cart.map(item => (
-              <div key={item.id} className="cart-item">
-                <img src={item.image} alt={item.name} />
-                <div className="cart-item-info">
-                  <h3>{item.name}</h3>
-                  <p>{formatCLP(item.price)}</p>
+      <div className="container">
+        <h1 className="title">Carrito de Compras</h1>
+        {cart.length === 0 ? (
+          <p className="text-center" style={{color: "var(--muted)"}}>El carrito está vacío</p>
+        ) : (
+          <>
+            <div className="row g-3 mb-4">
+              {cart.map(item => (
+                <div key={item.id} className="col-12">
+                  <div className="cart-item d-flex flex-wrap align-items-center gap-3">
+                    <img src={item.image} alt={item.name} style={{width: "80px", height: "80px", objectFit: "contain"}} />
+                    <div className="cart-item-info flex-grow-1">
+                      <h3>{item.name}</h3>
+                      <p>{formatCLP(item.price)}</p>
+                    </div>
+                    <div className="cart-item-actions d-flex align-items-center gap-2">
+                      <button className="btn btn-sm btn-primary" onClick={() => updateQuantity(item.id, -1)}>-</button>
+                      <span className="fw-bold">{item.quantity}</span>
+                      <button className="btn btn-sm btn-primary" onClick={() => updateQuantity(item.id, 1)}>+</button>
+                    </div>
+                    <div className="cart-item-total fw-bold">{formatCLP(item.price * item.quantity)}</div>
+                    <button className="btn btn-danger btn-sm" onClick={() => removeItem(item.id)}>✕</button>
+                  </div>
                 </div>
-                <div className="cart-item-actions">
-                  <button onClick={() => updateQuantity(item.id, -1)}>-</button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => updateQuantity(item.id, 1)}>+</button>
+              ))}
+            </div>
+            <div className="row">
+              <div className="col-12">
+                <div className="cart-summary text-end">
+                  <h2>Total: {formatCLP(total)}</h2>
+                  <button className="btn btn-primary btn-lg" onClick={checkout}>Finalizar Compra</button>
                 </div>
-                <div className="cart-item-total">{formatCLP(item.price * item.quantity)}</div>
-                <button className="cart-item-remove" onClick={() => removeItem(item.id)}>✕</button>
               </div>
-            ))}
-          </div>
-          <div className="cart-summary">
-            <h2>Total: {formatCLP(total)}</h2>
-            <button className="btn btn-primary" onClick={checkout}>Finalizar Compra</button>
-          </div>
-        </>
-      )}
+            </div>
+          </>
+        )}
+      </div>
     </section>
   );
 }

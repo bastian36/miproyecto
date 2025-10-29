@@ -49,21 +49,37 @@ export default function Register() {
 
   return (
     <section className="page">
-      <h1 className="title">Crear Cuenta</h1>
-      <form className="form" onSubmit={onSubmit}>
-        {error && <div style={{color: "#ff4444", padding: "12px", background: "#331111", borderRadius: "8px"}}>{error}</div>}
-        <label>Nombre completo</label>
-        <input name="name" value={f.name} onChange={onChange} required />
-        <label>Correo</label>
-        <input name="email" type="email" value={f.email} onChange={onChange} required />
-        <label>Contraseña</label>
-        <input name="pass" type="password" value={f.pass} onChange={onChange} required />
-        <label>Confirmar contraseña</label>
-        <input name="pass2" type="password" value={f.pass2} onChange={onChange} required />
-        <label>Teléfono (opcional)</label>
-        <input name="phone" value={f.phone} onChange={onChange} />
-        <button className="btn btn-primary">Registrarse</button>
-      </form>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-8 col-lg-6">
+            <h1 className="title">Crear Cuenta</h1>
+            <form onSubmit={onSubmit}>
+              {error && <div className="alert alert-danger">{error}</div>}
+              <div className="mb-3">
+                <label className="form-label">Nombre completo</label>
+                <input className="form-control" name="name" value={f.name} onChange={onChange} required />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Correo</label>
+                <input className="form-control" name="email" type="email" value={f.email} onChange={onChange} required />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Contraseña</label>
+                <input className="form-control" name="pass" type="password" value={f.pass} onChange={onChange} required />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Confirmar contraseña</label>
+                <input className="form-control" name="pass2" type="password" value={f.pass2} onChange={onChange} required />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Teléfono (opcional)</label>
+                <input className="form-control" name="phone" value={f.phone} onChange={onChange} />
+              </div>
+              <button className="btn btn-primary w-100">Registrarse</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

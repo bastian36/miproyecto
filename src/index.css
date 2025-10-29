@@ -30,11 +30,11 @@ a{color:var(--primary);text-decoration:none}
 
 /* Banner */
 .banner{border-radius:0;overflow:hidden;margin:0 auto 24px}
-.banner img{width:100%;height:320px;object-fit:cover;display:block}
+.banner img{width:100%;max-width:100%;height:auto;max-height:320px;object-fit:cover;display:block}
 
 /* News card */
 .news-card{display:flex;gap:28px;background:var(--card);border:1px solid #2a2a2a;border-radius:16px;padding:24px;align-items:center}
-.news-thumb{width:240px;border-radius:12px;object-fit:cover}
+.news-thumb{width:240px;max-width:100%;border-radius:12px;object-fit:cover}
 .news-body{flex:1}
 .news-date{color:var(--muted);margin:0 0 8px}
 .news-title{margin:6px 0 12px}
@@ -48,7 +48,7 @@ input:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 2px #2d8
 /* Products */
 .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .product-card{background:var(--card);border:1px solid #2a2a2a;border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
-.product-card img{width:100%;height:200px;object-fit:contain;background:#0a0a0a}
+.product-card img{width:100%;height:200px;object-fit:contain;background:#0a0a0a;max-width:100%}
 .product-body{padding:16px;display:flex;flex-direction:column;flex:1}
 .product-name{font-weight:700;margin:4px 0}
 .product-price{color:#cfe1ff;margin:6px 0 12px;flex:1}
@@ -113,3 +113,18 @@ footer{background:#000;color:#a9b2bd;padding:32px 24px 16px}
 .boleta-table th{background:#0a0a0a;color:var(--primary)}
 .boleta-total{text-align:right;margin:24px 0;padding:16px;background:#0a0a0a;border-radius:8px}
 .boleta-total h2{margin:0;color:var(--primary)}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar{flex-wrap:wrap;padding:8px 12px}
+  .brand img{height:40px}
+  .menu{flex-wrap:wrap;gap:12px;font-size:14px}
+  .actions{width:100%;justify-content:center;margin-top:8px}
+  .news-card{flex-direction:column}
+  .news-thumb{width:100%;height:200px}
+  .product-card img{height:150px}
+  .cart-item{flex-direction:column;text-align:center}
+  .cart-item img{margin:0 auto}
+  .container{padding:12px}
+  .page{padding:12px}
+}
